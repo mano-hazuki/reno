@@ -9,11 +9,10 @@ return new class extends Migration {
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up(): void {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamp("email_verified_at")->after("remember_token")->change();
-            $table->renameColumn("email_verified_at", "verified_at");
+            DB::statement("ALTER TABLE users MODIFY email_verified_at TIMESTAMP AFTER remember_token;");
+            DB::statement("ALTER TABLE users RENAME COLUMN email_verified_at TO verified_at;");
             $table->text("image_url")->nullable()->after("remember_token");
             $table->string("bio", 200)->nullable()->after("remember_token");
             $table->timestamp("deleted_at")->nullable();
@@ -23,14 +22,13 @@ return new class extends Migration {
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
+    public function down(): void {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn("bio");
             $table->dropColumn("image_url");
             $table->dropColumn("deleted_at");
-            $table->timestamp("verified_at")->after("email")->change();
-            $table->renameColumn("verified_at", "email_verified_at");
+            DB::statement("ALTER TABLE users MODIFY verified_at TIMESTAMP AFTER email;");
+            DB::statement("ALTER TABLE users RENAME COLUMN verified_at TO email_verified_at;");
         });
     }
 };

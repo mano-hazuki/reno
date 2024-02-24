@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LectureController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,6 +16,14 @@ use Inertia\Inertia;
 |
 */
 
+Route::get("/", function () {
+    return Inertia::render("Home");
+});
+Route::get("/search", function () {
+    return Inertia::render("search/Search");
+});
+Route::post("/search", [LectureController::class, "index"]);
+
 //Route::get('/', function () {
 //    return Inertia::render('Welcome', [
 //        'canLogin' => Route::has('login'),
@@ -23,14 +32,6 @@ use Inertia\Inertia;
 //        'phpVersion' => PHP_VERSION,
 //    ]);
 //});
-
-Route::get("/", function () {
-    return Inertia::render("Home");
-});
-
-Route::get("/search", function () {
-    return Inertia::render("search/Search");
-});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

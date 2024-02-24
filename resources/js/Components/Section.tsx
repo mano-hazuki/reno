@@ -1,19 +1,17 @@
 import VideoItem from "@/Components/VideoItem";
+import { Lecture } from "@/types";
 
 interface Props {
 	name: string;
+	lectures: Array<Lecture>;
 }
 
-export default function Section(props: Props) {
+export default function Section({ name, lectures }: Props) {
 	return (
 		<section className="w-full h-fit p-4">
-			<h1 className="my-2 font-bold text-2xl">{ props.name }</h1>
+			<h1 className="my-2 font-bold text-2xl">{ name }</h1>
 			<ul className="w-full h-fit my-4">
-				<VideoItem key={ 1 }/>
-				<VideoItem key={ 2 }/>
-				<VideoItem key={ 3 }/>
-				<VideoItem key={ 4 }/>
-				<VideoItem key={ 5 }/>
+				{ lectures.map(lecture => <VideoItem key={ lecture.id }/>) }
 			</ul>
 		</section>
 	);
