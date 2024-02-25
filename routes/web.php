@@ -16,13 +16,12 @@ use Inertia\Inertia;
 |
 */
 
-Route::get("/", function () {
-    return Inertia::render("Home");
-});
+Route::get("/", [LectureController::class, "index"]);
+
 Route::get("/search", function () {
     return Inertia::render("search/Search");
 });
-Route::post("/search", [LectureController::class, "index"]);
+Route::post("/search", [LectureController::class, "show"]);
 
 //Route::get('/', function () {
 //    return Inertia::render('Welcome', [

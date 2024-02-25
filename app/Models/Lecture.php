@@ -44,7 +44,7 @@ use Illuminate\Support\Collection;
 class Lecture extends Model {
     use HasFactory;
 
-    public function get(int $amount): Collection {
+    public function getByAmount(int $amount): Collection {
         return $this->latest()->limit($amount)->get();
     }
 }

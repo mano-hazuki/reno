@@ -4,7 +4,7 @@ import Section from "@/Components/Section";
 import { Lecture } from "@/types";
 
 interface Props {
-	lectures: Array<Lecture>;
+	lectures: Lecture[];
 }
 
 export default function Home({ lectures }: Props) {
