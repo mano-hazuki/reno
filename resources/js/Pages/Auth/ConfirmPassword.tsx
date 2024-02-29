@@ -1,26 +1,32 @@
-import {FormEventHandler, useEffect} from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import {Head, useForm} from '@inertiajs/react';
+import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/InputLabel";
+import { PrimaryButton } from "@/Components/PrimaryButton";
+import TextInput from "@/Components/TextInput";
+import GuestLayout from "@/Layouts/GuestLayout";
+import {
+  Head,
+  useForm
+} from "@inertiajs/react";
+import {
+  FormEventHandler,
+  useEffect
+} from "react";
 
 export default function ConfirmPassword() {
-  const {data, setData, post, processing, errors, reset} = useForm({
-    password: '',
+  const { data, setData, post, processing, errors, reset } = useForm({
+    password: "",
   });
 
   useEffect(() => {
     return () => {
-      reset('password');
+      reset("password");
     };
   }, []);
 
   const submit: FormEventHandler = (e) => {
     e.preventDefault();
 
-    post(route('password.confirm'));
+    post(route("password.confirm"));
   };
 
   return (
@@ -31,7 +37,7 @@ export default function ConfirmPassword() {
         This is a secure area of the application. Please confirm your password before continuing.
       </div>
 
-      <form onSubmit={submit}>
+      <form onSubmit={ submit }>
         <div className="mt-4">
           <InputLabel htmlFor="password" value="Password"/>
 
@@ -39,17 +45,17 @@ export default function ConfirmPassword() {
             id="password"
             type="password"
             name="password"
-            value={data.password}
+            value={ data.password }
             className="mt-1 block w-full"
-            isFocused={true}
-            onChange={(e) => setData('password', e.target.value)}
+            isFocused={ true }
+            onChange={ (e) => setData("password", e.target.value) }
           />
 
-          <InputError message={errors.password} className="mt-2"/>
+          <InputError message={ errors.password } className="mt-2"/>
         </div>
 
         <div className="flex items-center justify-end mt-4">
-          <PrimaryButton className="ms-4" disabled={processing}>
+          <PrimaryButton className="ms-4" disabled={ processing }>
             Confirm
           </PrimaryButton>
         </div>

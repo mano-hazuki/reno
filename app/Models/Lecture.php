@@ -54,10 +54,14 @@ class Lecture extends Model {
         return DB::table("lectures")
             ->join("users", "lectures.user_id", "=", "users.id")
             ->select("lectures.id as lecture_id", "title as lecture_title", "description as lecture_description", "view_count as lecture_view_count", "thumbnail_image_url as lecture_thumbnail_image_url", "data_file_url as lecture_data_file_url")
-            ->addSelect("user_id", "name as user_name", "image_url as user_image_url")
+            ->addSelect("user_id", "name as user_name", "display_name as user_display_name", "image_url as user_image_url")
             ->addSelect("lectures.created_at", "lectures.updated_at", "lectures.deleted_at")
             ->limit($amount)
             ->get();
+    }
+
+    public function fetchByUserId(int $userId): Collection {
+        return $this->where("user_id", $userId)->get();
     }
 
     public function getById(int $userId, int $lectureId): Collection {
@@ -66,7 +70,7 @@ class Lecture extends Model {
             ->where("user_id", "=", $userId)
             ->where("lectures.id", "=", $lectureId)
             ->select("lectures.id as lecture_id", "title as lecture_title", "description as lecture_description", "view_count as lecture_view_count", "thumbnail_image_url as lecture_thumbnail_image_url", "data_file_url as lecture_data_file_url")
-            ->addSelect("user_id", "name as user_name", "image_url as user_image_url")
+            ->addSelect("user_id", "name as user_name", "display_name as user_display_name", "image_url as user_image_url")
             ->addSelect("lectures.created_at", "lectures.updated_at", "lectures.deleted_at")
             ->get();
     }

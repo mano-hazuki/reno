@@ -1,6 +1,7 @@
 export interface User {
   id: number;
   name: string;
+  display_name: string;
   email: string;
   bio?: string;
   image_url?: string;
@@ -32,6 +33,7 @@ export interface DataType {
   lecture_data_file_url: string;
   user_id: number;
   user_name: string;
+  user_display_name: string;
   user_image_url?: string;
   created_at?: string;
   updated_at?: string;
