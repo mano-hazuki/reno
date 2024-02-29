@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Database\Factories\LectureFactory;
-use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 // FIXME: timestamp === Carbon ??? IDK
 
@@ -42,9 +43,31 @@ use Illuminate\Support\Collection;
  * @mixin Builder
  */
 class Lecture extends Model {
+
     use HasFactory;
 
-    public function getByAmount(int $amount): Collection {
-        return $this->latest()->limit($amount)->get();
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class, "user_id", "id");
+    }
+
+    public function getByAmount(int $amount = 10): Collection {
+        return DB::table("lectures")
+            ->join("users", "lectures.user_id", "=", "users.id")
+            ->select("lectures.id as lecture_id", "title as lecture_title", "description as lecture_description", "view_count as lecture_view_count", "thumbnail_image_url as lecture_thumbnail_image_url", "data_file_url as lecture_data_file_url")
+            ->addSelect("user_id", "name as user_name", "image_url as user_image_url")
+            ->addSelect("lectures.created_at", "lectures.updated_at", "lectures.deleted_at")
+            ->limit($amount)
+            ->get();
+    }
+
+    public function getById(int $userId, int $lectureId): Collection {
+        return DB::table("lectures")
+            ->join("users", "lectures.user_id", "=", "users.id")
+            ->where("user_id", "=", $userId)
+            ->where("lectures.id", "=", $lectureId)
+            ->select("lectures.id as lecture_id", "title as lecture_title", "description as lecture_description", "view_count as lecture_view_count", "thumbnail_image_url as lecture_thumbnail_image_url", "data_file_url as lecture_data_file_url")
+            ->addSelect("user_id", "name as user_name", "image_url as user_image_url")
+            ->addSelect("lectures.created_at", "lectures.updated_at", "lectures.deleted_at")
+            ->get();
     }
 }

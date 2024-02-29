@@ -33,7 +33,12 @@ class LectureController extends Controller {
     /**
      * Display the specified resource.
      */
-    public function show(Lecture $lecture) {
+    public function show(int $userId, int $lectureId) {
+        $lecture = new Lecture();
+        $data = $lecture->getById($userId, $lectureId);
+        return Inertia::render("lecture/Lecture", [
+            "data" => $data
+        ]);
     }
 
     /**

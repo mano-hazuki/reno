@@ -1,18 +1,17 @@
-import Layout from "@/Layouts/Layout";
 import Section from "@/Components/Section";
-
-import { Lecture } from "@/types";
+import Layout from "@/Layouts/Layout";
+import { DataType } from "@/types";
 
 interface Props {
-	lectures: Lecture[];
+  lectures: DataType[];
 }
 
 export default function Home({ lectures }: Props) {
-	return (
-		<Layout>
-			<main className="w-full h-fit flex-1">
-				<Section name="トレンド" lectures={ lectures }/>
-			</main>
-		</Layout>
-	);
+  return (
+    <Layout>
+      <main className="w-full h-fit flex-1">
+        <Section name="トレンド" lectures={ lectures }/>
+      </main>
+    </Layout>
+  );
 }

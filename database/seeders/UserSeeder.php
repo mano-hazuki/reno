@@ -13,28 +13,33 @@ class UserSeeder extends Seeder {
     public function run(): void {
         User::factory()->createMany([
             [
-                "name" => "John",
+                "name" => "john123",
+                "display_name" => "John",
                 "email" => "john@example.com",
                 "password" => "john",
 
             ],
             [
-                "name" => "Michel",
+                "name" => "michel456",
+                "display_name" => "Michel",
                 "email" => "michel@example.com",
                 "password" => "michel",
             ],
             [
-                "name" => "James",
+                "name" => "james_gg",
+                "display_name" => "James",
                 "email" => "james@example.com",
                 "password" => "james",
             ],
             [
-                "name" => "Mary",
+                "name" => "mary-uk",
+                "display_name" => "Mary",
                 "email" => "mary@example.com",
                 "password" => "mary",
             ],
             [
-                "name" => "Robert",
+                "name" => "rob4rt",
+                "display_name" => "Robert",
                 "email" => "robert@example.com",
                 "password" => "robert",
             ]
