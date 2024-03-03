@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder {
-
     /**
      * Run the database seeds.
      */
@@ -17,6 +16,7 @@ class UserSeeder extends Seeder {
                 "display_name" => "John",
                 "email" => "john@example.com",
                 "password" => "john",
+                "bio" => "Hello! I'm John!",
 
             ],
             [
@@ -30,6 +30,7 @@ class UserSeeder extends Seeder {
                 "display_name" => "James",
                 "email" => "james@example.com",
                 "password" => "james",
+                "bio" => "Hello! I'm James!",
             ],
             [
                 "name" => "mary-uk",
@@ -42,6 +43,7 @@ class UserSeeder extends Seeder {
                 "display_name" => "Robert",
                 "email" => "robert@example.com",
                 "password" => "robert",
+                "bio" => "Hello! I'm Robert!",
             ]
         ]);
     }

@@ -1,33 +1,68 @@
 import { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
+import { classnames } from "@/Lib/classnames";
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
-export function Button({ className = "", disabled, children, ...props }: ButtonProps) {
+function ButtonBase({ className = "", disabled, children, ...props }: Props) {
   return (
-    <button { ...props }
-            className={ `inline-flex justify-between items-center px-4 py-2 bg-white border-2 border-sky-500 rounded font-sans font-semibold text-xs text-sky-500 tracking-widest ${ disabled && "opacity-25" }` + className }
-            disabled={ disabled }>
+    <button
+      className={ classnames("inline-flex justify-between items-center gap-2 px-4 py-2 border-2 rounded font-sans", disabled ? "opacity-25" : "", className) }
+      disabled={ disabled }
+      { ...props }>
       { children }
     </button>
   );
 }
 
-export function PrimaryButton({ className = "", disabled, children, ...props }: ButtonProps) {
+export function Button({ className = "", disabled, children, ...props }: Props) {
   return (
-    <button { ...props }
-            className={ `inline-flex justify-between items-center gap-2 px-4 py-2 bg-sky-500 border border-transparent rounded font-sans font-bold text-xs text-white tracking-widest ${ disabled && "opacity-25" }` + className }
-            disabled={ disabled }>
+    <ButtonBase
+      className={ classnames("bg-white border-sky-500 font-semibold text-sm text-sky-500 tracking-wide", className) }
+      disabled={ disabled }
+      { ...props }>
       { children }
-    </button>
+    </ButtonBase>
   );
 }
 
-interface FollowButtonProps extends ButtonProps {
+export function PrimaryButton({ className = "", disabled, children, ...props }: Props) {
+  return (
+    <ButtonBase
+      className={ classnames("bg-sky-500 border-sky-500 font-medium text-sm text-white tracking-wide", className) }
+      disabled={ disabled }
+      { ...props }>
+      { children }
+    </ButtonBase>
+  );
+}
+
+export function DangerButton({ className = "", disabled, children, ...props }: Props) {
+  return (
+    <ButtonBase
+      className={ classnames("bg-red-600 border-red-600 font-semibold text-sm text-white tracking-wide", className) }
+      disabled={ disabled }
+      { ...props }>
+      { children }
+    </ButtonBase>
+  );
+}
+
+interface FollowButtonProps extends Props {
   isFollowing: boolean;
 }
 
-// TODO: Implement
 export function FollowButton({ className = "", disabled, isFollowing, children, ...props }: FollowButtonProps) {
-
+  return (
+    <PrimaryButton type="submit" { ...props }>
+      <FontAwesomeIcon className={ classnames(isFollowing ? "text-rose-500" : "text-white") }
+                       icon={ faHeart }
+                       size={ "xl" }/>
+      { isFollowing ? "Following" : "Follow" }
+    </PrimaryButton>
+  );
 }

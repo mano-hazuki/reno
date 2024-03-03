@@ -1,8 +1,9 @@
-import Header from "@/Components/Header";
 import {
   PropsWithChildren,
   StrictMode
 } from "react";
+
+import Header from "@/Components/Header";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (

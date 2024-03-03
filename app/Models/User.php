@@ -7,7 +7,6 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
@@ -17,26 +16,26 @@ use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
 
-// FIXME: timestamp === Carbon ??? IDK
-
 /**
  * App\Models\User
  *
- * @property integer id
- * @property string name
- * @property string email
- * @property string password
- * @property string remember_token
- * @property string bio
- * @property string image_url
- * @property Carbon verified_at
- * @property Carbon created_at
- * @property Carbon updated_at
- * @property Carbon deleted_at
+ * @property string $name
+ * @property string $display_name
+ * @property string $email
+ * @property mixed $password
+ * @property string|null $remember_token
+ * @property string|null $bio
+ * @property string|null $image_url
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $verified_at
+ * @property string|null $deleted_at
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read Collection<int, PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ * @property-read Collection<int, Video> $videos
+ * @property-read int|null $videos_count
  * @method static UserFactory factory($count = null, $state = [])
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
@@ -44,8 +43,8 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereBio($value)
  * @method static Builder|User whereCreatedAt($value)
  * @method static Builder|User whereDeletedAt($value)
+ * @method static Builder|User whereDisplayName($value)
  * @method static Builder|User whereEmail($value)
- * @method static Builder|User whereId($value)
  * @method static Builder|User whereImageUrl($value)
  * @method static Builder|User whereName($value)
  * @method static Builder|User wherePassword($value)
@@ -55,8 +54,16 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @mixin Builder
  */
 class User extends Authenticatable {
-
     use HasApiTokens, HasFactory, Notifiable;
+
+    /* Specify name of column which is primary key */
+    protected $primaryKey = "name";
+
+    /* Disable auto incrementing because of its type */
+    public $incrementing = false;
+
+    /* Set a type of primary key to string */
+    protected $keyType = "string";
 
     /**
      * The attributes that are mass assignable.
@@ -64,9 +71,9 @@ class User extends Authenticatable {
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        "name",
+        "email",
+        "password",
     ];
 
     /**
@@ -75,8 +82,8 @@ class User extends Authenticatable {
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        "password",
+        "remember_token",
     ];
 
     /**
@@ -85,21 +92,15 @@ class User extends Authenticatable {
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        "verified_at" => "datetime",
+        "password" => "hashed",
     ];
 
-    public function lectures(): HasMany {
-        return $this->hasMany(Lecture::class, "user_id", "id");
+    public function videos(): HasMany {
+        return $this->hasMany(Video::class, "user_name", "name");
     }
 
-    /**
-     * Return user model whose name matches to $name
-     *
-     * @param string $name
-     * @return User|Model|object|null
-     */
-    public function getByName(string $name) {
-        return $this->where("name", $name)->first();
+    public function fetch(string $name): User {
+        return $this->where("name", $name)->with("videos")->first();
     }
 }
