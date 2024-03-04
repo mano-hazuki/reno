@@ -55,6 +55,10 @@ class Video extends Model {
         return $this->orderBy("created_at", $direction)->limit($amount)->with("user")->get();
     }
 
+    public function fetchByQuery(string $query, int $amount, string $direction = "asc" | "desc"): Collection {
+        return $this->where("title", "LIKE", "%$query%")->orderBy("created_at", $direction)->with("user")->get();
+    }
+
     public function fetchAllByUsername(int $username, string $direction = "asc" | "desc"): Collection {
         return $this->where("user_name", $username)->orderBy("created_at", $direction)->with("user")->get();
     }

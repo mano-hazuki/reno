@@ -2,13 +2,11 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\VideoQueryController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get("/", [VideoController::class, "index"]);
-Route::get("/search", function () {
-    return Inertia::render("search/Search");
-});
+Route::get("/search", [VideoQueryController::class, "index"]);
 Route::get("/{username}", [UserController::class, "show"]);
 Route::get("/{username}/videos/{slug}", [VideoController::class, "show"]);
 

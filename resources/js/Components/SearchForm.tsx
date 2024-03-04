@@ -1,13 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-export default function SearchForm() {
+export function SearchForm() {
 	return (
-		<form action="" method="post" className="w-fit max-w-screen h-fit p-8 flex flex-row items-center">
-			<input type="search" name="q" placeholder="ワードを入力" minLength={ 1 } maxLength={ 32 }/>
-			<button type="submit" className="p-4">
-				<FontAwesomeIcon icon={ faMagnifyingGlass } size={ "lg" } color={ "gray" }/>
-			</button>
-		</form>
+		<section id="search_form" className="w-full h-fit m-8 grid place-items-center">
+			<form action="" method="get" className="w-2/3 h-10 flex items-center border border-solid border-gray-600 rounded-lg overflow-hidden">
+				<button type="submit" className="w-fit h-fit mx-4 flex-none">
+					<FontAwesomeIcon icon={ faMagnifyingGlass } size="lg" color="gray"/>
+				</button>
+				<input type="search" name="q" placeholder="Search" className="text-lg w-auto h-full flex-1"/>
+			</form>
+		</section>
 	);
 }

@@ -22,7 +22,7 @@ function ButtonBase({ className = "", disabled, children, ...props }: Props) {
 export function Button({ className = "", disabled, children, ...props }: Props) {
   return (
     <ButtonBase
-      className={ classnames("bg-white border-sky-500 font-semibold text-sm text-sky-500 tracking-wide", className) }
+      className={ classnames("bg-white border-emerald-400 font-semibold text-sm text-emerald-400 tracking-wide", className) }
       disabled={ disabled }
       { ...props }>
       { children }
@@ -33,7 +33,7 @@ export function Button({ className = "", disabled, children, ...props }: Props) 
 export function PrimaryButton({ className = "", disabled, children, ...props }: Props) {
   return (
     <ButtonBase
-      className={ classnames("bg-sky-500 border-sky-500 font-medium text-sm text-white tracking-wide", className) }
+      className={ classnames("bg-emerald-400 border-emerald-400 font-medium text-sm text-white tracking-wide", className) }
       disabled={ disabled }
       { ...props }>
       { children }

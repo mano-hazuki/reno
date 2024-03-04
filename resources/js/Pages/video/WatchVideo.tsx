@@ -1,15 +1,15 @@
-import Layout from "@/Layouts/Layout";
+import { Layout } from "@/Layouts/Layout";
 
 import { UserVideo } from "@/types";
 
 interface Props {
-  video: UserVideo;
+	video: UserVideo;
 }
 
 export default function WatchVideo({ video }: Props) {
-  return (
-    <Layout>
-      <div>{ video.description }</div>
-    </Layout>
-  );
+	return (
+		<Layout>
+			<div>{ video.description }</div>
+		</Layout>
+	);
 }
