@@ -4,19 +4,17 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
     | This value is the name of your application. This value is used when the
-    | framework needs to place the application's name in a notification or
+    | framework needs to place the application"s name in a notification or
     | any other location as required by the application or its packages.
     |
     */
-
-    'name' => env('APP_NAME', 'Laravel'),
+    "name" => env("APP_NAME", "Laravel"),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,8 +26,7 @@ return [
     | services the application utilizes. Set this in your ".env" file.
     |
     */
-
-    'env' => env('APP_ENV', 'production'),
+    "env" => env("APP_ENV", "production"),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,8 +38,7 @@ return [
     | application. If disabled, a simple generic error page is shown.
     |
     */
-
-    'debug' => (bool) env('APP_DEBUG', false),
+    "debug" => (bool)env("APP_DEBUG", false),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,10 +50,9 @@ return [
     | your application so that it is used when running Artisan tasks.
     |
     */
+    "url" => env("APP_URL", "http://localhost"),
 
-    'url' => env('APP_URL', 'http://localhost'),
-
-    'asset_url' => env('ASSET_URL'),
+    "asset_url" => env("ASSET_URL"),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,8 +64,7 @@ return [
     | ahead and set this to a sensible default for you out of the box.
     |
     */
-
-    'timezone' => 'Asia/Tokyo',
+    "timezone" => "Asia/Tokyo",
 
     /*
     |--------------------------------------------------------------------------
@@ -82,8 +76,7 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
-    'locale' => 'ja',
+    "locale" => "ja",
 
     /*
     |--------------------------------------------------------------------------
@@ -95,8 +88,7 @@ return [
     | the language folders that are provided through your application.
     |
     */
-
-    'fallback_locale' => 'en',
+    "fallback_locale" => "en",
 
     /*
     |--------------------------------------------------------------------------
@@ -108,8 +100,7 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
-
-    'faker_locale' => 'en_US',
+    "faker_locale" => "en_US",
 
     /*
     |--------------------------------------------------------------------------
@@ -121,10 +112,9 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
+    "key" => env("APP_KEY"),
 
-    'key' => env('APP_KEY'),
-
-    'cipher' => 'AES-256-CBC',
+    "cipher" => "AES-256-CBC",
 
     /*
     |--------------------------------------------------------------------------
@@ -132,16 +122,15 @@ return [
     |--------------------------------------------------------------------------
     |
     | These configuration options determine the driver used to determine and
-    | manage Laravel's "maintenance mode" status. The "cache" driver will
+    | manage Laravel"s "maintenance mode" status. The "cache" driver will
     | allow maintenance mode to be controlled across multiple machines.
     |
     | Supported drivers: "file", "cache"
     |
     */
-
-    'maintenance' => [
-        'driver' => 'file',
-        // 'store' => 'redis',
+    "maintenance" => [
+        "driver" => "file",
+        // "store" => "redis",
     ],
 
     /*
@@ -154,8 +143,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
-    'providers' => ServiceProvider::defaultProviders()->merge([
+    "providers" => ServiceProvider::defaultProviders()->merge([
         /*
          * Package Service Providers...
          */
@@ -163,11 +151,8 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class, App\Providers\AuthServiceProvider::class, // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class, App\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -177,12 +162,9 @@ return [
     |
     | This array of class aliases will be registered when this application
     | is started. However, feel free to register as many as you wish as
-    | the aliases are "lazy" loaded so they don't hinder performance.
+    | the aliases are "lazy" loaded so they don"t hinder performance.
     |
     */
-
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+    "aliases" => Facade::defaultAliases()->merge([// "Example" => App\Facades\Example::class,
     ])->toArray(),
-
 ];

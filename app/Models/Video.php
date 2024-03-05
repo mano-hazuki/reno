@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\VideoFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,15 +33,14 @@ use Illuminate\Support\Collection;
  * @method static Builder|Video whereDataUrl($value)
  * @method static Builder|Video whereDeletedAt($value)
  * @method static Builder|Video whereDescription($value)
+ * @method static Builder|Video whereSlug($value)
  * @method static Builder|Video whereThumbnailImageUrl($value)
  * @method static Builder|Video whereTitle($value)
  * @method static Builder|Video whereUpdatedAt($value)
- * @method static Builder|Video whereViews($value)
- * @method static Builder|Video whereSlug($value)
  * @method static Builder|Video whereUserName($value)
- * @mixin Builder
+ * @method static Builder|Video whereViews($value)
  */
-class Video extends Model {
+class Video extends Eloquent {
     use HasFactory;
 
     public function user(): BelongsTo {

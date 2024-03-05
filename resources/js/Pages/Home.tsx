@@ -6,6 +6,7 @@ import { UserVideo } from "@/types";
 
 interface Props {
 	videos: UserVideo[];
+	canRegister:
 }
 
 export default function Home({ videos }: Props) {

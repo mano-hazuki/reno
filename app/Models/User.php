@@ -51,7 +51,6 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @method static Builder|User whereVerifiedAt($value)
- * @mixin Builder
  */
 class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;

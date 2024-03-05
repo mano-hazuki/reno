@@ -12,15 +12,13 @@ class VideoController extends Controller {
 
     public function index(Video $video) {
         return Inertia::render("Home", [
-            "videos" => $video->fetchByAmount(10, "desc")
+            "videos" => $video->fetchByAmount(10, "desc"),
         ]);
     }
 
-    public function create() {
-    }
+    public function create() {}
 
-    public function store(StoreVideoRequest $request) {
-    }
+    public function store(StoreVideoRequest $request) {}
 
     public function show(string $username, string $slug): Response {
         $video = new Video();
@@ -29,12 +27,9 @@ class VideoController extends Controller {
         ]);
     }
 
-    public function edit(Video $video) {
-    }
+    public function edit(Video $video) {}
 
-    public function update(UpdateVideoRequest $request, Video $video) {
-    }
+    public function update(UpdateVideoRequest $request, Video $video) {}
 
-    public function destroy(Video $video) {
-    }
+    public function destroy(Video $video) {}
 }
