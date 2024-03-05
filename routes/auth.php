@@ -11,6 +11,10 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Only non-authenticated users (guests) can access to these URLs
+ * If not, then users will be redirected to user home page
+ */
 Route::middleware("guest")->group(function () {
     Route::get("register", [RegisteredUserController::class, "create"])->name("register");
     Route::post("register", [RegisteredUserController::class, "store"]);
@@ -25,6 +29,10 @@ Route::middleware("guest")->group(function () {
     Route::post("reset-password", [NewPasswordController::class, "store"])->name("password.store");
 });
 
+/**
+ * Only authenticated users can access to these URLs
+ * If not, then guests will be redirected to login page.
+ */
 Route::middleware("auth")->group(function () {
     Route::get("verify-email", EmailVerificationPromptController::class)->name("verification.notice");
     Route::get("verify-email/{id}/{hash}", VerifyEmailController::class)->middleware(["signed", "throttle:6,1"])->name("verification.verify");
