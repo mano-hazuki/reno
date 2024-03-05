@@ -2,16 +2,18 @@ import { Layout } from "@/Layouts/Layout";
 
 import { UserVideoPreview } from "@/Components/UserVideoPreview";
 
-import { UserVideo } from "@/types";
+import { User, UserVideo } from "@/types";
 
 interface Props {
+	auth: {
+		user: User;
+	};
 	videos: UserVideo[];
-	canRegister:
 }
 
-export default function Home({ videos }: Props) {
+export default function Home({ auth, videos }: Props) {
 	return (
-		<Layout>
+		<Layout user={ auth.user }>
 			<main className="w-full h-fit p-4 flex-1">
 				<h1 className="my-2 font-bold text-2xl">最新の投稿</h1>
 				<ul className="w-full h-fit my-4 flex flex-col justify-start items-center gap-2">

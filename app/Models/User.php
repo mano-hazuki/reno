@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -55,6 +54,9 @@ use Laravel\Sanctum\PersonalAccessToken;
 class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /* Specify table name */
+    protected $table = "users";
+
     /* Specify name of column which is primary key */
     protected $primaryKey = "name";
 
@@ -71,9 +73,14 @@ class User extends Authenticatable {
      */
     protected $fillable = [
         "name",
+        "display_name",
         "email",
         "password",
+        "bio",
+        "image_url"
     ];
+
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
