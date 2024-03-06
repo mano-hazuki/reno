@@ -8,7 +8,6 @@ import { Sidebar } from "@/Components/Sidebar";
 
 import { User } from "@/types";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
-import { classnames } from "@/Lib/classnames";
 
 interface Props {
 	user: User;
@@ -36,15 +35,15 @@ export default function Header({ user }: Props) {
 				<Logo href={ route("home") } className=""/>
 				<div className="w-fit h-fit flex flex-row items-center gap-6">
 					<Link href={ route("search") } className="">
-						<FontAwesomeIcon icon={ faMagnifyingGlass } size={ "lg" } color={ "gray" }/>
+						<FontAwesomeIcon icon={ faMagnifyingGlass } className="text-lg text-gray-500"/>
 					</Link>
 					<button type="button" className="" onClick={ () => toggle() }>
-						<FontAwesomeIcon icon={ faUser } size={ "lg" } color={ "gray" }/>
+						<FontAwesomeIcon icon={ faUser } className="text-lg text-gray-500"/>
 					</button>
 				</div>
 			</header>
 			<SidebarOpenContext.Provider value={ { isOpen, setOpen } }>
-				<Sidebar user={user}/>
+				<Sidebar user={ user }/>
 			</SidebarOpenContext.Provider>
 		</>
 	);
