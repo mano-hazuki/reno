@@ -8,6 +8,7 @@ import { Sidebar } from "@/Components/Sidebar";
 
 import { User } from "@/types";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { classnames } from "@/Lib/classnames";
 
 interface Props {
 	user: User;
@@ -43,7 +44,7 @@ export default function Header({ user }: Props) {
 				</div>
 			</header>
 			<SidebarOpenContext.Provider value={ { isOpen, setOpen } }>
-				<Sidebar/>
+				<Sidebar user={user}/>
 			</SidebarOpenContext.Provider>
 		</>
 	);
