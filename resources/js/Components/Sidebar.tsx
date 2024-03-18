@@ -1,17 +1,17 @@
 import { useContext } from "react";
+import { SidebarOpenContext } from "@/Components/Header";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket, faArrowRightToBracket, faTableColumns, faUser, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { SidebarOpenContext } from "@/Components/Header";
-
-import { User } from "@/types";
 import { UserIcon } from "@/Components/UserIcon";
 import { NavItem } from "@/Components/NavItem";
+
+import { User } from "@/types";
 import { classnames } from "@/Lib/classnames";
 
 interface Props {
-	user: User;
+	user: User | null;
 }
 
 export function Sidebar({ user }: Props) {

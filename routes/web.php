@@ -26,6 +26,9 @@ Route::middleware("auth")->group(function () {
     Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
     Route::delete("/profile", [ProfileController::class, "destroy"])->name("profile.destroy");
     //    Route::get("/dashboard", [])->name("dashboard");
+    Route::get("/videos/new", [VideoController::class, "create"])->name("videos.new");
+    Route::get("/videos/{slug}/edit", [VideoController::class, "edit"]);
+    Route::post("/videos/{slug}/edit", [VideoController::class, "update"]);
 });
 
 /**

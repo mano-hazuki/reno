@@ -1,15 +1,15 @@
 import { Layout } from "@/Layouts/Layout";
 
-import { UserVideo } from "@/types";
+import type { PageProps, UserVideo } from "@/types";
 
-interface Props {
+interface Props extends PageProps {
 	video: UserVideo;
 }
 
-export default function WatchVideo({ video }: Props) {
+export default function WatchVideo({ auth, video }: Props) {
 	return (
-		<Layout>
-			<div>{ video.description }</div>
+		<Layout user={auth.user}>
+			<div>{video.description}</div>
 		</Layout>
 	);
 }

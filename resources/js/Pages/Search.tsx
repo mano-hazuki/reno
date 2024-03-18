@@ -3,20 +3,22 @@ import { Layout } from "@/Layouts/Layout";
 import { SearchForm } from "@/Components/SearchForm";
 import { UserVideoPreview } from "@/Components/UserVideoPreview";
 
-import { UserVideo } from "@/types";
+import type { PageProps, UserVideo } from "@/types";
 
-interface Props {
+interface Props extends PageProps {
 	videos?: UserVideo[];
 }
 
-export default function Search({ videos }: Props) {
+export default function Search({ auth, videos }: Props) {
 	return (
-		<Layout>
+		<Layout user={auth.user}>
 			<main className="w-full h-fit flex-1 flex flex-col justify-start items-center">
-				<SearchForm/>
+				<SearchForm />
 				<section id="search_result" className="w-full h-fit px-4 pb-4">
 					<ul className="w-full h-fit flex flex-col justify-start items-center gap-2">
-						{ videos && videos.map(video => <UserVideoPreview video={ video }/>) }
+						{videos?.map((video) => (
+							<UserVideoPreview video={video} />
+						))}
 					</ul>
 				</section>
 			</main>

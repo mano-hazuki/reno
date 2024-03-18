@@ -6,7 +6,7 @@ import { classnames } from "@/Lib/classnames";
 import { InertiaLinkProps, Link } from "@inertiajs/react";
 
 interface Props extends InertiaLinkProps {
-	user: User;
+	user: User | null;
 }
 
 

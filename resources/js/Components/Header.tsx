@@ -10,7 +10,7 @@ import { User } from "@/types";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 
 interface Props {
-	user: User;
+	user: User | null;
 }
 
 /* Context for Sidebar */
@@ -32,7 +32,9 @@ export default function Header({ user }: Props) {
 	return (
 		<>
 			<header className="sticky top-0 left-0 right-0 z-10 w-full h-fit px-6 py-4 flex-none flex flex-row justify-between items-center bg-white drop-shadow-sm">
-				<Logo href={ route("home") } className=""/>
+				<Link href={ route("home") }>
+					<Logo textColor="#0F0F0F" className="w-24 h-15"/>
+				</Link>
 				<div className="w-fit h-fit flex flex-row items-center gap-6">
 					<Link href={ route("search") } className="">
 						<FontAwesomeIcon icon={ faMagnifyingGlass } className="text-lg text-gray-500"/>

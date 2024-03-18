@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class VideoQueryController extends Controller {
+class VideoQueryController extends Controller
+{
 
-    public function index(Request $request): Response {
+    public function index(Request $request): Response
+    {
         $video = new Video();
         $query = $request->query("q", "");
         if (!empty($query)) {

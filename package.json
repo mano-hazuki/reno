@@ -6,6 +6,7 @@
     "build": "tsc && vite build"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.6.1",
     "@headlessui/react": "^1.4.2",
     "@inertiajs/react": "^1.0.0",
     "@tailwindcss/forms": "^0.5.3",
@@ -28,7 +29,12 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@types/lodash": "^4.14.202",
+    "framer-motion": "^11.0.12",
+    "lodash": "^4.17.21",
     "react-hook-form": "^7.50.1",
+    "react-spinners": "^0.13.8",
     "zod": "^3.22.4"
   }
 }

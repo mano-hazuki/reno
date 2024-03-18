@@ -1,18 +1,13 @@
-import { User } from "@/types";
-import { Layout } from "@/Layouts/Layout";
+import { AuthenticatedLayout } from "@/Layouts/AuthenticatedLayout";
 
-interface Props {
-	auth: {
-		user: User;
-	};
-}
+import type { AuthenticatedPageProps } from "@/types";
+
+interface Props extends AuthenticatedPageProps {}
 
 export default function Account({ auth }: Props) {
 	return (
-		<Layout user={ auth.user }>
-			<main className="">
-				{/*	Contents Here */ }
-			</main>
-		</Layout>
+		<AuthenticatedLayout user={auth.user}>
+			<main className="">{/*	Contents Here */}</main>
+		</AuthenticatedLayout>
 	);
 }

@@ -3,15 +3,15 @@ import { Layout } from "@/Layouts/Layout";
 import { FollowButton } from "@/Components/Button";
 import { VideoPreview } from "@/Components/VideoPreview";
 
-import { UserWithVideos } from "@/types";
+import { PageProps, UserWithVideos } from "@/types";
 
-interface Props {
+interface Props extends PageProps {
 	user: UserWithVideos;
 }
 
-export default function UserDetails({ user }: Props) {
+export default function UserDetails({ auth, user }: Props) {
 	return (
-		<Layout>
+		<Layout user={ auth.user }>
 			<main className="w-full h-fit flex flex-col justify-start items-center">
 				<section id="user" className="w-full h-fit p-8 flex flex-row justify-between">
 					<div className="p-4 flex-none">
