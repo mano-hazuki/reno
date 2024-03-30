@@ -1,13 +1,12 @@
-import { Link } from "@inertiajs/react";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
-
 import { Logo } from "@/Components/Logo";
 import { Sidebar } from "@/Components/Sidebar";
+import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "@inertiajs/react";
+import { createContext, useState } from "react";
 
-import { User } from "@/types";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import type { User } from "@/types";
+import type { Dispatch, SetStateAction } from "react";
 
 interface Props {
 	user: User | null;
@@ -21,8 +20,7 @@ export interface SidebarOpenContextValueType {
 
 const contextDefaultValue: SidebarOpenContextValueType = {
 	isOpen: false,
-	setOpen: () => {
-	}
+	setOpen: () => {},
 };
 export const SidebarOpenContext = createContext<SidebarOpenContextValueType>(contextDefaultValue);
 
@@ -32,20 +30,20 @@ export default function Header({ user }: Props) {
 	return (
 		<>
 			<header className="sticky top-0 left-0 right-0 z-10 w-full h-fit px-6 py-4 flex-none flex flex-row justify-between items-center bg-white drop-shadow-sm">
-				<Link href={ route("home") }>
-					<Logo textColor="#0F0F0F" className="w-24 h-15"/>
+				<Link href={route("home")}>
+					<Logo textColor="#0F0F0F" className="w-24 h-15" />
 				</Link>
 				<div className="w-fit h-fit flex flex-row items-center gap-6">
-					<Link href={ route("search") } className="">
-						<FontAwesomeIcon icon={ faMagnifyingGlass } className="text-lg text-gray-500"/>
+					<Link href={route("search")} className="">
+						<FontAwesomeIcon icon={faMagnifyingGlass} className="text-lg text-gray-500" />
 					</Link>
-					<button type="button" className="" onClick={ () => toggle() }>
-						<FontAwesomeIcon icon={ faUser } className="text-lg text-gray-500"/>
+					<button type="button" className="" onClick={() => toggle()}>
+						<FontAwesomeIcon icon={faUser} className="text-lg text-gray-500" />
 					</button>
 				</div>
 			</header>
-			<SidebarOpenContext.Provider value={ { isOpen, setOpen } }>
-				<Sidebar user={ user }/>
+			<SidebarOpenContext.Provider value={{ isOpen, setOpen }}>
+				<Sidebar user={user} />
 			</SidebarOpenContext.Provider>
 		</>
 	);

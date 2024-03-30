@@ -21,7 +21,7 @@ export default function Login({ status, canResetPassword }: Props) {
 		return () => {
 			reset("password");
 		};
-	});
+	}, []);
 
 	const submit: FormEventHandler = (e) => {
 		e.preventDefault();

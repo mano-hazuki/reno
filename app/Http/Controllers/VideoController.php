@@ -20,7 +20,7 @@ class VideoController extends Controller
 
     public function create()
     {
-        return Inertia::render("video/Editor");
+        return Inertia::render("Video/Editor");
     }
 
     public function store(StoreVideoRequest $request)
@@ -30,7 +30,7 @@ class VideoController extends Controller
     public function show(string $username, string $slug): Response
     {
         $video = new Video();
-        return Inertia::render("video/WatchVideo", [
+        return Inertia::render("Video/WatchVideo", [
             "video" => $video->fetch($username, $slug),
         ]);
     }

@@ -32,9 +32,13 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/lodash": "^4.14.202",
     "framer-motion": "^11.0.12",
+    "immer": "^10.0.4",
+    "jotai": "^2.7.1",
+    "jotai-immer": "^0.3.0",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.50.1",
     "react-spinners": "^0.13.8",
+    "swr": "^2.2.5",
     "zod": "^3.22.4"
   }
 }

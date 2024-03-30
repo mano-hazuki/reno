@@ -5,9 +5,9 @@ import { debounce } from "lodash";
 import { faEye, faEyeSlash, faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import type { Track, VideoElement } from "@/types/video";
+import type { VideoElement, VideoTrack } from "@/Lib/video";
 
-export function TrackPanel({ tracks }: { tracks: Track[] }) {
+export function TrackPanel({ tracks }: { tracks: VideoTrack[] }) {
 	return (
 		<ul className="size-full overflow-y-auto bg-slate-200 rounded flex flex-col justify-start items-center gap-2">
 			{tracks.map((track) => (
@@ -17,7 +17,7 @@ export function TrackPanel({ tracks }: { tracks: Track[] }) {
 	);
 }
 
-function TrackItem({ track }: { track: Track }) {
+function TrackItem({ track }: { track: VideoTrack }) {
 	const timelineRef = useRef<HTMLSpanElement>(null);
 	const [timelinePos, setTimelinePos] = useState({ x: 0, y: 0 });
 	const [timelineSize, setTimelineSize] = useState({ width: 0, height: 0 });
