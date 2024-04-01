@@ -4,7 +4,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useAtom, useAtomValue } from "jotai/react";
 import { useState } from "react";
 
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FocusEvent } from "react";
 
 export function AudioProperty() {
 	const [isOpen, setOpen] = useState<boolean>(false);
@@ -12,6 +12,7 @@ export function AudioProperty() {
 
 	const [elements, setElements] = useAtom(elementsAtom);
 	const elementId = useAtomValue(elementSelectedIdAtom);
+
 	const src = elements.find((e) => e.id === elementId)!.audio!.src;
 	const updateSrc = (event: ChangeEvent<HTMLInputElement>) => {
 		if (elementId == null) {
@@ -25,7 +26,7 @@ export function AudioProperty() {
 		});
 	};
 	const volume = elements.find((e) => e.id === elementId)!.audio!.volume;
-	const updateVolume = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateVolume = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -33,7 +34,9 @@ export function AudioProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.audio!.volume = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const volume = Number.isNaN(value) ? 0 : value < 0 ? 0 : value > 100 ? 100 : value;
+			prev.find((e) => e.id === elementId)!.audio!.volume = volume;
 		});
 	};
 	return (
@@ -50,7 +53,7 @@ export function AudioProperty() {
 
 				<span className="w-full h-fit px-4 py-4 rounded flex flex-row items-center gap-2 bg-white bg-opacity-5">
 					<span className="flex-none text-white text-opacity-80">Volume</span>
-					<input className="w-full h-fit flex-1 text-white truncate" type="text" value={volume} placeholder="Opacity" onChange={updateVolume} />
+					<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={volume} placeholder="Volume" onBlur={updateVolume} />
 				</span>
 			</div>
 		</li>

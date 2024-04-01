@@ -118,6 +118,8 @@
         "color": "#000000"
       },
       "image": {
+        "width": 0,
+        "height": 0,
         "src": "https://imgur.com/xxx/xxx.jpeg",
         "opacity": 1.0
       }
@@ -167,6 +169,8 @@
         "color": "#0000FF"
       },
       "rect": {
+        "width": 0,
+        "height": 0,
         "color": "#FFFFFF"
       }
     }

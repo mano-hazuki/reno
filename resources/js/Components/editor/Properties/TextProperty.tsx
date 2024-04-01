@@ -1,10 +1,10 @@
-import { Icon } from "@/Components/Icon";
-import { elementSelectedIdAtom, elementsAtom } from "@/Pages/Video/Editor";
 import { faAngleDown, faAngleUp, faFont, faTextHeight, faTextWidth } from "@fortawesome/free-solid-svg-icons";
 import { useAtom } from "jotai/react";
+import type { ChangeEvent, FocusEvent } from "react";
 import { useState } from "react";
 
-import type { ChangeEvent } from "react";
+import { Icon } from "@/Components/Icon";
+import { elementSelectedIdAtom, elementsAtom } from "@/Pages/Video/Editor";
 
 export function TextProperty() {
 	const [isOpen, setOpen] = useState<boolean>(false);
@@ -25,18 +25,6 @@ export function TextProperty() {
 			prev.find((e) => e.id === elementId)!.text!.value = event.target.value;
 		});
 	};
-	const color = elements.find((e) => e.id === elementId)!.text!.color;
-	const updateColor = (event: ChangeEvent<HTMLInputElement>) => {
-		if (elementId == null) {
-			return;
-		}
-		setElements((prev) => {
-			if (!prev) {
-				return;
-			}
-			prev.find((e) => e.id === elementId)!.text!.color = event.target.value;
-		});
-	};
 	const fontFamily = elements.find((e) => e.id === elementId)!.text!.fontFamily;
 	const updateFontFamily = (event: ChangeEvent<HTMLInputElement>) => {
 		if (elementId == null) {
@@ -50,7 +38,7 @@ export function TextProperty() {
 		});
 	};
 	const fontWeight = elements.find((e) => e.id === elementId)!.text!.fontWeight;
-	const updateFontWeight = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateFontWeight = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -58,11 +46,13 @@ export function TextProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.text!.fontWeight = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const weight = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.text!.fontWeight = weight;
 		});
 	};
 	const fontSize = elements.find((e) => e.id === elementId)!.text!.fontSize;
-	const updateFontSize = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateFontSize = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -70,11 +60,13 @@ export function TextProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.text!.fontSize = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const size = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.text!.fontSize = size;
 		});
 	};
 	const lineHeight = elements.find((e) => e.id === elementId)!.text!.lineHeight;
-	const updateLineHeight = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateLineHeight = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -82,11 +74,13 @@ export function TextProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.text!.lineHeight = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const lineHeight = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.text!.lineHeight = lineHeight;
 		});
 	};
 	const letterSpacing = elements.find((e) => e.id === elementId)!.text!.letterSpacing;
-	const updateLetterSpacing = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateLetterSpacing = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -94,7 +88,21 @@ export function TextProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.text!.letterSpacing = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const letterSpacing = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.text!.letterSpacing = letterSpacing;
+		});
+	};
+	const color = elements.find((e) => e.id === elementId)!.text!.color;
+	const updateColor = (event: ChangeEvent<HTMLInputElement>) => {
+		if (elementId == null) {
+			return;
+		}
+		setElements((prev) => {
+			if (!prev) {
+				return;
+			}
+			prev.find((e) => e.id === elementId)!.text!.color = event.target.value;
 		});
 	};
 	return (
@@ -114,22 +122,22 @@ export function TextProperty() {
 				<div className="w-full h-fit flex flex-row justify-between items-center gap-4">
 					<span className="w-1/2 h-fit p-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<span className="flex-none text-white text-opacity-80">Size</span>
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={fontSize} placeholder="Size" onChange={updateFontSize} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={fontSize} placeholder="Size" onBlur={updateFontSize} />
 					</span>
 					<span className="w-1/2 h-fit p-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<span className="flex-none text-white text-opacity-80">Weight</span>
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={fontWeight} placeholder="Weight" onChange={updateFontWeight} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={fontWeight} placeholder="Weight" onBlur={updateFontWeight} />
 					</span>
 				</div>
 
 				<div className="w-full h-fit flex flex-row justify-between items-center gap-4">
 					<span className="w-1/2 h-fit p-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<Icon className="flex-none text-lg text-white text-opacity-80" icon={faTextHeight} />
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={lineHeight} placeholder="Line Height" onChange={updateLineHeight} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={lineHeight} placeholder="Line Height" onBlur={updateLineHeight} />
 					</span>
 					<span className="w-1/2 h-fit p-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<Icon className="flex-none text-lg text-white text-opacity-80" icon={faTextWidth} />
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={letterSpacing} placeholder="Letter Spacing" onChange={updateLetterSpacing} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={letterSpacing} placeholder="Letter Spacing" onBlur={updateLetterSpacing} />
 					</span>
 				</div>
 

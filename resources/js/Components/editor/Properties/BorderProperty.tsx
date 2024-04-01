@@ -4,7 +4,7 @@ import { faAngleDown, faAngleUp, faCheck } from "@fortawesome/free-solid-svg-ico
 import { useAtom, useAtomValue } from "jotai/react";
 import { useState } from "react";
 
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FocusEvent } from "react";
 
 export function BorderProperty() {
 	const [isOpen, setOpen] = useState<boolean>(false);
@@ -26,7 +26,7 @@ export function BorderProperty() {
 		});
 	};
 	const width = elements.find((e) => e.id === elementId)!.border!.width;
-	const updateWidth = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateWidth = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -34,11 +34,13 @@ export function BorderProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.border!.width = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const width = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.border!.width = width;
 		});
 	};
 	const radius = elements.find((e) => e.id === elementId)!.border!.radius;
-	const updateRadius = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateRadius = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -46,7 +48,9 @@ export function BorderProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.border!.radius = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const radius = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.border!.radius = radius;
 		});
 	};
 	const color = elements.find((e) => e.id === elementId)!.border!.color;
@@ -81,11 +85,11 @@ export function BorderProperty() {
 				<div className="w-full h-fit flex flex-row justify-between items-center gap-4">
 					<span className="w-1/2 h-fit px-4 py-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<span className="flex-none text-white text-opacity-80">Width</span>
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={width} placeholder="Right" onChange={updateWidth} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={width} placeholder="Width" onBlur={updateWidth} />
 					</span>
 					<span className="w-1/2 h-fit px-4 py-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<span className="flex-none text-white text-opacity-80">Radius</span>
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={radius} placeholder="Bottom" onChange={updateRadius} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={radius} placeholder="Radius" onBlur={updateRadius} />
 					</span>
 				</div>
 				<span className="w-full h-fit px-4 py-4 rounded flex flex-row items-center gap-4 bg-white bg-opacity-5">

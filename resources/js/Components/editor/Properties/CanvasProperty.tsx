@@ -3,15 +3,20 @@ import { useAtom } from "jotai/react";
 
 import type { ChangeEvent } from "react";
 
-// TODO: Validate
 export function CanvasProperty() {
 	const [canvas, setCanvas] = useAtom(canvasAtom);
 
-	function updateWidth(e: ChangeEvent<HTMLInputElement>) {
-		setCanvas({ ...canvas, width: Number.parseInt(e.target.value) });
+	function updateWidth(event: ChangeEvent<HTMLInputElement>) {
+		const value = Number.parseInt(event.target.value);
+		const width = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+		const height = (width / 16) * 9;
+		setCanvas({ ...canvas, width: width, height: height });
 	}
-	function updateHeight(e: ChangeEvent<HTMLInputElement>) {
-		setCanvas({ ...canvas, height: Number.parseInt(e.target.value) });
+	function updateHeight(event: ChangeEvent<HTMLInputElement>) {
+		const value = Number.parseInt(event.target.value);
+		const height = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+		const width = (height / 9) * 16;
+		setCanvas({ ...canvas, height: height, width: width });
 	}
 	function updateColor(e: ChangeEvent<HTMLInputElement>) {
 		setCanvas({ ...canvas, color: e.target.value });

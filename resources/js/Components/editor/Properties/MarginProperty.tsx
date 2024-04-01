@@ -4,7 +4,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useAtom } from "jotai/react";
 import { useState } from "react";
 
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FocusEvent } from "react";
 
 export function MarginProperty() {
 	const [isOpen, setOpen] = useState<boolean>(false);
@@ -13,7 +13,7 @@ export function MarginProperty() {
 	const [elements, setElements] = useAtom(elementsAtom);
 	const [elementId, setElementId] = useAtom(elementSelectedIdAtom);
 	const valueLeft = elements.find((e) => e.id === elementId)!.margin!.left;
-	const updateLeft = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateLeft = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -21,11 +21,13 @@ export function MarginProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.margin!.left = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const left = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.margin!.left = left;
 		});
 	};
 	const valueTop = elements.find((e) => e.id === elementId)!.margin!.top;
-	const updateTop = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateTop = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -33,11 +35,13 @@ export function MarginProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.padding!.top = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const top = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.padding!.top = top;
 		});
 	};
 	const valueRight = elements.find((e) => e.id === elementId)!.margin!.right;
-	const updateRight = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateRight = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -45,11 +49,13 @@ export function MarginProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.margin!.right = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const right = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.margin!.right = right;
 		});
 	};
 	const valueBottom = elements.find((e) => e.id === elementId)!.margin!.bottom;
-	const updateBottom = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateBottom = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -57,7 +63,9 @@ export function MarginProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.margin!.bottom = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const bottom = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.margin!.bottom = bottom;
 		});
 	};
 	return (
@@ -70,21 +78,21 @@ export function MarginProperty() {
 				<div className="w-full h-fit flex flex-row justify-between items-center gap-4">
 					<span className="w-1/2 h-fit px-4 py-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<span className="flex-none text-white text-opacity-80">Left</span>
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={valueLeft} placeholder="Left" onChange={updateLeft} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={valueLeft} placeholder="Left" onBlur={updateLeft} />
 					</span>
 					<span className="w-1/2 h-fit px-4 py-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<span className="flex-none text-white text-opacity-80">Top</span>
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={valueTop} placeholder="Top" onChange={updateTop} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={valueTop} placeholder="Top" onBlur={updateTop} />
 					</span>
 				</div>
 				<div className="w-full h-fit flex flex-row justify-between items-center gap-4">
 					<span className="w-1/2 h-fit px-4 py-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<span className="flex-none text-white text-opacity-80">Right</span>
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={valueRight} placeholder="Right" onChange={updateRight} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={valueRight} placeholder="Right" onBlur={updateRight} />
 					</span>
 					<span className="w-1/2 h-fit px-4 py-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 						<span className="flex-none text-white text-opacity-80">Bottom</span>
-						<input className="w-full h-fit flex-1 text-white truncate" type="text" value={valueBottom} placeholder="Bottom" onChange={updateBottom} />
+						<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={valueBottom} placeholder="Bottom" onBlur={updateBottom} />
 					</span>
 				</div>
 			</div>

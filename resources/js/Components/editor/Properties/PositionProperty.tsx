@@ -4,7 +4,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useAtom } from "jotai/react";
 import { useState } from "react";
 
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FocusEvent } from "react";
 
 export function PositionProperty() {
 	const [isOpen, setOpen] = useState<boolean>(false);
@@ -12,8 +12,9 @@ export function PositionProperty() {
 
 	const [elements, setElements] = useAtom(elementsAtom);
 	const [elementId, setElementId] = useAtom(elementSelectedIdAtom);
+
 	const valueX = elements.find((e) => e.id === elementId)!.position!.x;
-	const updatePosX = (event: ChangeEvent<HTMLInputElement>) => {
+	const updatePosX = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -21,11 +22,13 @@ export function PositionProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.position!.x = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const x = Number.isNaN(value) ? 0 : value;
+			prev.find((e) => e.id === elementId)!.position!.x = x;
 		});
 	};
 	const valueY = elements.find((e) => e.id === elementId)!.position!.y;
-	const updatePosY = (event: ChangeEvent<HTMLInputElement>) => {
+	const updatePosY = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -33,7 +36,9 @@ export function PositionProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.position!.y = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const y = Number.isNaN(value) ? 0 : value;
+			prev.find((e) => e.id === elementId)!.position!.y = y;
 		});
 	};
 	return (
@@ -45,12 +50,12 @@ export function PositionProperty() {
 			<div style={{ display: isOpen ? "flex" : "none" }} className="w-full h-fit px-4 py-2 flex flex-row justify-between items-center gap-4">
 				<span className="w-1/2 h-fit px-4 py-4 rounded flex flex-row items-center gap-2 bg-white bg-opacity-5">
 					<span className="flex-none text-white text-opacity-80">X</span>
-					<input className="w-full h-fit flex-1 text-white truncate" type="text" value={valueX} placeholder="X" onChange={updatePosX} />
+					<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={valueX} placeholder="X" onBlur={updatePosX} />
 				</span>
 
 				<span className="w-1/2 h-fit px-4 py-4 rounded flex flex-row items-center gap-2 bg-white bg-opacity-5">
 					<span className="flex-none text-white text-opacity-80">Y</span>
-					<input className="w-full h-fit flex-1 text-white truncate" type="text" value={valueY} placeholder="Y" onChange={updatePosY} />
+					<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={valueY} placeholder="Y" onBlur={updatePosY} />
 				</span>
 			</div>
 		</li>

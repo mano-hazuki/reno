@@ -4,7 +4,7 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useAtom, useAtomValue } from "jotai/react";
 import { useState } from "react";
 
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FocusEvent } from "react";
 
 export function OutlineProperty() {
 	const [isOpen, setOpen] = useState<boolean>(false);
@@ -26,7 +26,7 @@ export function OutlineProperty() {
 		});
 	};
 	const width = elements.find((e) => e.id === elementId)!.outline!.width;
-	const updateWidth = (event: ChangeEvent<HTMLInputElement>) => {
+	const updateWidth = (event: FocusEvent<HTMLInputElement>) => {
 		if (elementId == null) {
 			return;
 		}
@@ -34,7 +34,9 @@ export function OutlineProperty() {
 			if (!prev) {
 				return;
 			}
-			prev.find((e) => e.id === elementId)!.outline!.width = Number.parseInt(event.target.value);
+			const value = Number.parseInt(event.target.value);
+			const width = Number.isNaN(value) ? 0 : value < 0 ? 0 : value;
+			prev.find((e) => e.id === elementId)!.outline!.width = width;
 		});
 	};
 	const color = elements.find((e) => e.id === elementId)!.outline!.color;
@@ -68,7 +70,7 @@ export function OutlineProperty() {
 
 				<span className="w-full h-fit px-4 py-4 rounded flex flex-row items-center gap-3 bg-white bg-opacity-5">
 					<span className="flex-none text-white text-opacity-80">Width</span>
-					<input className="w-full h-fit flex-1 text-white truncate" type="text" value={width} placeholder="Right" onChange={updateWidth} />
+					<input className="w-full h-fit flex-1 text-white truncate" type="text" defaultValue={width} placeholder="Right" onBlur={updateWidth} />
 				</span>
 
 				<span className="w-full h-fit px-4 py-4 rounded flex flex-row items-center gap-4 bg-white bg-opacity-5">

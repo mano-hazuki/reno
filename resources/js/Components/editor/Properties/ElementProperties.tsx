@@ -12,6 +12,7 @@ import { RectProperty } from "./RectProperty";
 import { TextProperty } from "./TextProperty";
 
 import type { RenoVideo } from "@/Lib/video";
+import { TimeProperty } from "./TimeProperty";
 
 export function ElementProperties() {
 	const elements = useAtomValue(elementsAtom);
@@ -34,6 +35,8 @@ export function ElementProperties() {
 	return (
 		<div className="size-full p-4 overflow-y-hidden bg-white bg-opacity-5 rounded flex flex-col justify-start items-center gap-3">
 			<menu className="size-full py-2 overflow-y-auto flex flex-col justify-start items-center gap-2">
+				<TimeProperty />
+
 				{hasPositionProp && <PositionProperty />}
 				{hasPaddingProp && <PaddingProperty />}
 				{hasMarginProp && <MarginProperty />}
