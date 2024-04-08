@@ -1,13 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
-export function useAnimationFrame(callback = () => {}) {
-	const idRef = useRef<number>(-1);
-	const loop = () => {
-		idRef.current = requestAnimationFrame(loop);
-		callback();
-	};
+export function useAnimationFrame(callback = (animatedAt: number) => {}) {
+	const requestIdRef = useRef<number>(-1);
+	const loop = useCallback(
+		(animatedAt: number) => {
+			requestIdRef.current = requestAnimationFrame(loop);
+			callback(animatedAt);
+		},
+		[callback],
+	);
 	useEffect(() => {
-		idRef.current = requestAnimationFrame(loop);
-		return () => cancelAnimationFrame(idRef.current);
-	}, []);
+		requestIdRef.current = requestAnimationFrame(loop);
+		return () => cancelAnimationFrame(requestIdRef.current);
+	}, [loop]);
 }

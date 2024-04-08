@@ -1,3 +1,5 @@
+import type { RenoVideo } from "@/Lib/video";
+
 export function RectElementPreview({ element, scaleFactor }: { element: RenoVideo.Element; scaleFactor: number }) {
 	const style: React.CSSProperties = {
 		// Position

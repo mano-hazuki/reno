@@ -1,4 +1,4 @@
-import { ControlPanel } from "@/Components/Editor/ControlPanel";
+import { Control } from "@/Components/Editor/Control/Control";
 import { AddElement } from "@/Components/Editor/Create/AddElement";
 import { AddElementModal } from "@/Components/Editor/Create/AddElementModal";
 import { VideoPreview } from "@/Components/Editor/Preview/VideoPreview";
@@ -102,7 +102,7 @@ export default function Editor({ auth, video }: Props) {
 
 						{/* Control */}
 						<div className="w-full h-2/6 px-4 pb-4">
-							<ControlPanel />
+							<Control />
 						</div>
 					</div>
 

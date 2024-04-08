@@ -10,7 +10,7 @@ import { msToTimeText } from "@/Lib/time";
 import type { RenoVideo } from "@/Lib/video";
 import { elementSelectedIdAtom, elementsAtom, tracksAtom, videoCurrentTimeAtom, videoDurationAtom } from "@/Pages/Video/Editor";
 
-export function ControlPanel() {
+export function Control() {
 	const [tracks, setTracks] = useAtom(tracksAtom);
 	const [trackX, setTrackX] = useState<number>(0);
 	const [trackY, setTrackY] = useState<number>(0);

@@ -12,7 +12,7 @@ interface Props extends PropsWithChildren {
 export function AuthenticatedLayout({ user, children }: Props) {
 	return (
 		<StrictMode>
-			<div className="w-full h-fit min-h-screen flex flex-col items-center bg-white">
+			<div className="w-full h-fit min-h-screen flex flex-col items-center bg-zinc-900">
 				<Header user={user} />
 				{children}
 				{/*<Footer/>*/}

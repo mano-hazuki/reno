@@ -3,6 +3,7 @@ export namespace RenoVideo {
 		canvas: Canvas;
 		tracks: Track[];
 		elements: Element[];
+		duration: number;
 	};
 
 	export type Canvas = {

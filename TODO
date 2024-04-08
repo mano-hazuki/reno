@@ -1,0 +1,24 @@
+
+Todo:
+  Pages:
+    ✔ Home page @done(24-04-08 16:38)
+    ✔ Search page @done(24-04-08 16:44)
+    ✔ User page @done(24-04-08 16:44)
+    ☐ Dashboard page (Video management)
+    ☐ Settings page (Account + Profile)
+    ☐ Watch video page
+    ☐ Video editor page
+    ☐ Register page
+    ☐ Login page
+    
+  Features:
+    ☐ Watch video
+    ☐ Edit video
+    ☐ Upload video
+    ☐ Delete video
+    ☐ unpublish video
+
+  Additional Features:
+    ☐ useSWR
+    ☐ Follow feature
+    ☐ Audio support

@@ -7,6 +7,7 @@ interface Props extends SVGAttributes<SVGElement> {
 export function Logo({ textColor, ...props }: Props) {
 	return (
 		<svg {...props} viewBox="0 0 481 152" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<title>Logo</title>
 			<path
 				fillRule="evenodd"
 				clipRule="evenodd"

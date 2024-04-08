@@ -8,7 +8,7 @@ import { VideoElementPreview } from "./VideoElementPreview";
 export function VideoPreview() {
 	const canvas = useAtomValue(canvasAtom);
 	const previewRef = useRef<HTMLDivElement>(null);
-	const [scaleFactor, setScaleFactor] = useState<number>(0);
+	const [scaleFactor, setScaleFactor] = useState<number>(1);
 	const currentTime = useAtomValue(videoCurrentTimeAtom);
 	const elements = useAtomValue(elementsAtom);
 
