@@ -1,6 +1,7 @@
 import { faClock, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "@inertiajs/react";
 
+import { toDisplayDate } from "@/Lib/time";
 import type { User, Video } from "@/types";
 import { Icon } from "./Icon";
 
@@ -13,7 +14,7 @@ export function VideoPreview({ user, video }: Props) {
 	return (
 		<li key={`${user.name} ${video.slug}`} className="relative w-full h-fit rounded bg-white bg-opacity-10">
 			<Link href={`/videos/${video.slug}`}>
-				<img src={"/images/login_bg.jpg"} alt="Thumbnail" className="w-full h-auto aspect-video" />
+				<img src={video.thumbnail_image_url} alt="Thumbnail" className="w-full h-auto aspect-video" />
 				{/* <div className="w-full h-auto aspect-video bg-gray-600" /> */}
 
 				<div className="w-full h-fit px-4 pt-2 pb-4 rounded-b flex flex-row justify-start items-start gap-4">
@@ -37,7 +38,7 @@ export function VideoPreview({ user, video }: Props) {
 							{/* Created at */}
 							<div className="flex flex-row items-center gap-1">
 								<Icon icon={faClock} className="text-xs text-sky-400 text-opacity-80" />
-								<span className="text-xs text-white text-opacity-60 truncate">{video.created_at}</span>
+								<span className="text-xs text-white text-opacity-60 truncate">{toDisplayDate(video.created_at!)}</span>
 							</div>
 						</div>
 					</div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -23,8 +24,10 @@ Route::get("/account", function () {
  * If not, then guests will be redirected to login page.
  */
 Route::middleware("auth")->group(function () {
+    Route::get("/dashboard", [DashboardController::class, "index"])->name("dashboard");
     Route::get("/settings/profile", [ProfileController::class, "edit"])->name("profile.edit");
     Route::patch("/settings/profile", [ProfileController::class, "update"])->name("profile.update");
+    Route::get("/settings/account", [AccountController::class, "edit"])->name("account.edit");
     Route::delete("/settings/account", [AccountController::class, "destroy"])->name("account.destroy");
 
     Route::get("/videos/new", [VideoController::class, "create"])->name("videos.new");

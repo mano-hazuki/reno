@@ -1,15 +1,21 @@
-import { forwardRef, InputHTMLAttributes, useEffect, useImperativeHandle, useRef } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import type { InputHTMLAttributes } from "react";
 
 export default forwardRef(function TextInput(
-	{ type = "text", className = "", isFocused = false, ...props }: InputHTMLAttributes<HTMLInputElement> & {
-		isFocused?: boolean
+	{
+		type = "text",
+		className = "",
+		isFocused = false,
+		...props
+	}: InputHTMLAttributes<HTMLInputElement> & {
+		isFocused?: boolean;
 	},
-	ref
+	ref,
 ) {
 	const localRef = useRef<HTMLInputElement>(null);
 
 	useImperativeHandle(ref, () => ({
-		focus: () => localRef.current?.focus()
+		focus: () => localRef.current?.focus(),
 	}));
 
 	useEffect(() => {
@@ -18,12 +24,5 @@ export default forwardRef(function TextInput(
 		}
 	}, []);
 
-	return (
-		<input
-			{ ...props }
-			type={ type }
-			className={ className }
-			ref={ localRef }
-		/>
-	);
+	return <input {...props} type={type} className={className} ref={localRef} />;
 });

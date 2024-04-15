@@ -37,7 +37,9 @@ export default function Login({ status, canResetPassword }: Props) {
 				<p className="text-sm text-white opacity-75">Sign in to continue learning</p>
 			</div>
 
-			<form onSubmit={submit} className="row-start-7 row-span-5 col-start-2 col-span-6 flex flex-col justify-center items-center gap-4">
+			<form
+				onSubmit={submit}
+				className="row-start-7 row-span-5 col-start-2 col-span-6 flex flex-col justify-center items-center gap-4 lg:row-start-6 lg:row-span-5 lg:col-start-4 lg:col-span-2">
 				<div className="w-full h-fit">
 					<TextInput
 						id="email"

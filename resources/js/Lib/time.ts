@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function msToTimeText(timeInMs: number): string {
 	const hour = zeroPadding(Math.floor(timeInMs / (1000 * 60 * 60)), 2);
 	const minute = zeroPadding(Math.floor((timeInMs % (1000 * 60 * 60)) / (1000 * 60)), 2);
@@ -26,4 +28,7 @@ export function zeroPadding(num: number, digits: number): string {
 		strNum = `0${strNum}`;
 	}
 	return strNum;
+}
+export function toDisplayDate(date: string) {
+	return moment(date, moment.ISO_8601).format("L");
 }

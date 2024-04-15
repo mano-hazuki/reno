@@ -34,7 +34,7 @@ export function Sidebar({ user }: Props) {
 							</button>
 						</li>
 						<Presentation key={1} />
-						{user ? ItemsForUser(user) : ItemsForGuest()}
+						{user ? ItemsForUser() : ItemsForGuest()}
 					</ul>
 				</nav>
 			</dialog>
@@ -48,40 +48,21 @@ function Presentation() {
 	return <li className="w-full h-[1px] my-2 bg-white bg-opacity-10" />;
 }
 
-function ItemsForUser(user: User) {
+function ItemsForUser() {
 	return (
 		<>
-			<NavItem key={2} href="" className="w-full px-4 py-3">
+			<NavItem key={2} href={route("profile.edit")} className="w-full px-4 py-3">
 				<Icon icon={faUser} className="text-lg text-white text-opacity-60" />
 				<span className="text-white text-opacity-80">Profile</span>
 			</NavItem>
-			<NavItem key={3} href="" className="w-full px-4 py-3">
+			<NavItem key={3} href={route("dashboard")} className="w-full px-4 py-3">
 				<Icon icon={faTableColumns} className="text-lg text-white text-opacity-60" />
 				<span className="text-white text-opacity-80">Dashboard</span>
 			</NavItem>
 
 			<Presentation key={4} />
 
-			<NavItem key={5} href="" className="w-full px-4 py-3">
-				<Icon icon={faUser} className="text-lg text-white text-opacity-60" />
-				<span className="text-white text-opacity-80">Your profile</span>
-			</NavItem>
-			<NavItem key={6} href="" className="w-full px-4 py-3">
-				<Icon icon={faUser} className="text-lg text-white text-opacity-60" />
-				<span className="text-white text-opacity-80">Your profile</span>
-			</NavItem>
-			<NavItem key={7} href="" className="w-full px-4 py-3">
-				<Icon icon={faUser} className="text-lg text-white text-opacity-60" />
-				<span className="text-white text-opacity-80">Your profile</span>
-			</NavItem>
-			<NavItem key={8} href="" className="w-full px-4 py-3">
-				<Icon icon={faUser} className="text-lg text-white text-opacity-60" />
-				<span className="text-white text-opacity-80">Your profile</span>
-			</NavItem>
-
-			<Presentation key={9} />
-
-			<NavItem key={10} href={route("logout")} method="post" className="w-full px-4 py-3">
+			<NavItem key={5} href={route("logout")} method="post" className="w-full px-4 py-3">
 				<Icon icon={faArrowRightFromBracket} className="text-lg text-red-500 text-opacity-80" />
 				<p className="text-red-500">Logout</p>
 			</NavItem>

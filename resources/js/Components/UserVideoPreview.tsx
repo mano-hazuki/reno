@@ -1,6 +1,7 @@
 import { faClock, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "@inertiajs/react";
 
+import { toDisplayDate } from "@/Lib/time";
 import type { UserVideo } from "@/types";
 import { Icon } from "./Icon";
 
@@ -36,7 +37,7 @@ export function UserVideoPreview({ video }: Props) {
 							{/* Created at */}
 							<div className="flex flex-row items-center gap-1">
 								<Icon icon={faClock} className="text-xs text-sky-400 text-opacity-80" />
-								<span className="text-xs text-white text-opacity-60 truncate">{video.created_at}</span>
+								<span className="text-xs text-white text-opacity-60 truncate">{toDisplayDate(video.created_at!)}</span>
 							</div>
 						</div>
 					</div>
