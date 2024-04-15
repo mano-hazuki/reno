@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -9,13 +8,12 @@ return [
     |
     | This option controls the default authentication "guard" and password
     | reset options for your application. You may change these defaults
-    | as required, but they're a perfect start for most applications.
+    | as required, but they"re a perfect start for most applications.
     |
     */
-
-    'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+    "defaults" => [
+        "guard" => "web",
+        "passwords" => "users",
     ],
 
     /*
@@ -29,16 +27,15 @@ return [
     |
     | All authentication drivers have a user provider. This defines how the
     | users are actually retrieved out of your database or other storage
-    | mechanisms used by this application to persist your user's data.
+    | mechanisms used by this application to persist your user"s data.
     |
     | Supported: "session"
     |
     */
-
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+    "guards" => [
+        "web" => [
+            "driver" => "session",
+            "provider" => "users",
         ],
     ],
 
@@ -49,7 +46,7 @@ return [
     |
     | All authentication drivers have a user provider. This defines how the
     | users are actually retrieved out of your database or other storage
-    | mechanisms used by this application to persist your user's data.
+    | mechanisms used by this application to persist your user"s data.
     |
     | If you have multiple user tables or models you may configure multiple
     | sources which represent each model / table. These sources may then
@@ -58,16 +55,14 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+    "providers" => [
+        "users" => [
+            "driver" => "eloquent",
+            "model" => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
+        // "users" => [
+        //     "driver" => "database",
+        //     "table" => "users",
         // ],
     ],
 
@@ -89,13 +84,12 @@ return [
     | quickly generating a very large amount of password reset tokens.
     |
     */
-
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_reset_tokens',
-            'expire' => 60,
-            'throttle' => 60,
+    "passwords" => [
+        "users" => [
+            "provider" => "users",
+            "table" => "password_reset_tokens",
+            "expire" => 60,
+            "throttle" => 60,
         ],
     ],
 
@@ -109,7 +103,5 @@ return [
     | confirmation screen. By default, the timeout lasts for three hours.
     |
     */
-
-    'password_timeout' => 10800,
-
+    "password_timeout" => 10800,
 ];

@@ -1,0 +1,47 @@
+{
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "color": "#FFFFFF"
+  },
+  "tracks": [
+    {
+      "id": 0,
+      "name": "Track 0",
+      "disabled": false,
+      "locked": false
+    },
+    {
+      "id": 1,
+      "name": "Track 1",
+      "disabled": false,
+      "locked": false
+    },
+    {
+      "id": 2,
+      "name": "Track 2",
+      "disabled": false,
+      "locked": false
+    },
+    {
+      "id": 3,
+      "name": "Track 3",
+      "disabled": false,
+      "locked": false
+    },
+    {
+      "id": 4,
+      "name": "Track 4",
+      "disabled": false,
+      "locked": false
+    },
+    {
+      "id": 5,
+      "name": "Track 5",
+      "disabled": false,
+      "locked": false
+    }
+  ],
+  "elements": [],
+  "duration": 300000
+}
